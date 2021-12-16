@@ -9,6 +9,7 @@ const {
 	findMovieByName,
 	deleteAllNullMovies,
 	listAll,
+	updateMovie,
 } = require('./movie/movie');
 
 const main = async (args) => {
@@ -42,6 +43,13 @@ const main = async (args) => {
 			await connection(deleteAllNullMovies, movieObj);
 		} else if (args.listAll) {
 			await connection(listAll);
+		} else if (args.updateMovie) {
+			const updateObj = {
+				title: args.title,
+				updateKey: args.key,
+				updateValue: args.value,
+			};
+			await connection(updateMovie, updateObj);
 		}
 	} catch (e) {
 		console.log(e);

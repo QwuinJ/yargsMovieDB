@@ -40,11 +40,13 @@ exports.updateMovieByName = async (collection, movieObj) => {
 };
 
 // example
-const updateMovie = async (collection, updateObj) => {
+exports.updateMovie = async (collection, updateObj) => {
 	try {
+		const newKey = updateObj.updateKey;
+		const newValue = updateObj.updateValue;
 		await collection.updateOne(
 			{ title: updateObj.title },
-			{ [updateObj.updateKey]: updateObj.updateValue }
+			{ $set: { [newKey]: newValue } }
 		);
 		console.log(`Updated ${updateObj.title}`);
 	} catch (e) {
